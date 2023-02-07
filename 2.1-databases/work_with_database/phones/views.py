@@ -7,13 +7,16 @@ def index(request):
 
 
 def show_catalog(request):
-    sort = request.GET.get('sort', 'name')
+    sort = request.GET.get('sort')
+    sort_dict = {
+        'name': 'name',
+        'min_price': '-price',
+        'max_price': 'price'}
     template = 'catalog.html'
-    if sort == 'max_price':
-        phones_obj = Phone.objects.all().order_by('-price')
-    else:
-        phones_obj = Phone.objects.all().order_by(f'{sort}')
-    context = {"phones": phones_obj}
+    phones = Phone.objects.all()
+    if sort:
+        phones = phones.order_by(sort_dict[sort])
+    context = {"phones": phones}
     return render(request, template, context)
 
 
