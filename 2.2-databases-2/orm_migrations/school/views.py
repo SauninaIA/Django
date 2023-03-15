@@ -9,3 +9,5 @@ def students_list(request):
     students = Student.objects.all().prefetch_related('teachers').order_by('group')
     context = {'students': students}
     return render(request, template, context)
+
+

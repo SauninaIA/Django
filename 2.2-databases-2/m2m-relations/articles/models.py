@@ -34,4 +34,4 @@ class Scope(models.Model):
     is_main = models.BooleanField(verbose_name='Основной', default=False)
 
     class Meta:
-        ordering = ['-is_main']
+        ordering = ['-is_main', 'tag__name']
