@@ -11,7 +11,6 @@ class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
     filter_backends = [SearchFilter]
     search_fields = ['title', 'description', ]
-    pagination_class = LimitOffsetPagination
 
 
 class CustomSearchFilter(SearchFilter):
@@ -23,4 +22,3 @@ class StockViewSet(ModelViewSet):
     serializer_class = StockSerializer
     filter_backends = [CustomSearchFilter]
     search_fields = ['products__id', 'products__title', 'products__description', ]
-    pagination_class = LimitOffsetPagination
